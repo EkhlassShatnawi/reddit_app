@@ -1,0 +1,22 @@
+
+<p> <small>posted_by :<%= post.user_name %></small></p>
+<% if post.post_type == 'link'%>
+  <p> <%= link_to post.description ,"http://#{post.description}" %></p>
+<% else %>
+  <p> <%= post.description %></p>
+<%end%>
+
+
+<% @up_votes = post.votes.where(:vote_rate => 'up' ).count %>
+<% @down_votes =  post.votes.where(:vote_rate => 'down' ).count %>
+<p><small> number of up votes  <%=@up_votes %></small></p>
+<p><small> number of down votes <%=@down_votes%></small></p>
+<p> <%= link_to 'show all comments' , category_post_path(@category ,post)%></p>
+
+<%= form_for [post ,@votable, Vote.new] do |f| %>
+  <%= f.radio_button :vote_rate, 'up', :checked => true %> 
+  <%= label :vote_rate_up, 'up' %>
+  <%= f.radio_button :vote_rate, 'down' %>
+  <%= label :vote_rate_down, 'down' %>
+  <%= f.submit %>
+<% end %> 

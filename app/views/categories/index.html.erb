@@ -1,0 +1,8 @@
+
+<table>
+    <% @subcat = Category.where(parent_id: 0).find_each do |item|%>
+    <tr>
+    <td><%= link_to item.title,category_path(item)  %></td>
+    </tr>
+    <% end %>
+</table>

@@ -1,0 +1,15 @@
+<p>
+  <strong>
+    <% if @post.post_type == 'link'%>
+    <p> <%= link_to @post.description ,'#' %></p>
+    <% else %>
+    <p> <%= @post.description %></p>
+    <%end%>
+  </strong>
+</p>
+<p> <small>posted_by :<%= @post.user_name %></small></p>
+<p>
+  <h2>Add a comment:</h2>
+  <%= render 'form' %>
+  <%= link_to 'Back', category_post_path(@category,@post) %>
+</p>

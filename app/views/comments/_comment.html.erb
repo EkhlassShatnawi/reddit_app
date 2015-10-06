@@ -1,0 +1,15 @@
+
+
+<p><small>  <%= comment.user_name %></small>  <%=  comment.body  %></p>
+<% @up_votes = comment.votes.where(:vote_rate => 'up' ).count %>
+<% @down_votes = comment.votes.where(:vote_rate => 'down' ).count %>
+<p><small> number of up votes  <%=@up_votes %></small></p>
+<p><small> number of down votes <%=@down_votes%></small></p>
+
+<%= form_for [comment, @votable, Vote.new] do |f| %>
+  <%= f.radio_button :vote_rate, 'up', :checked => true %> 
+  <%= label :vote_rate_up, 'up' %>
+  <%= f.radio_button :vote_rate, 'down' %>
+  <%= label :vote_rate_down, 'down' %>
+  <%= f.submit %>
+<% end %> 

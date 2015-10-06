@@ -1,0 +1,28 @@
+<%= form_for([@category, @category.posts.build]) do |f| %>
+<% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@post.errors.count, "error") %> prohibited
+        this post from being saved:
+      </h2>
+      <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <%= f.hidden_field :user_name, :value => current_user.email %>  
+  <p>
+  <%= f.radio_button :post_type, 'link', :checked => true %> 
+  <%= label :post_type_link, 'link' %>
+  <%= f.radio_button :post_type, 'body' %>
+  <%= label :post_type_body, 'body' %>
+    <%= f.submit %>
+  </p>
+<% end %>
