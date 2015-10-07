@@ -4,7 +4,7 @@
 <% @subcat = Category.where(parent_id: @parent_id).find_each do |item|%>
   <p> <%= link_to item.title,category_path(item)  %> </p>
 <% end %></p>
-
+<p>hi all</p>
 <h2>Posts</h2>
 <%= render @category.posts %>
 <p> <%= link_to 'add new post',new_category_post_path(@category)  %> </p>
